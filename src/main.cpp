@@ -4,8 +4,10 @@
 #include "Resources/ResourceManager.h"
 #include "Renderer/ShaderProgram.h"
 #include "Renderer/Texture2D.h"
-int g_windowSizeX = 640;
-int g_windowSizeY = 480;
+#include <glm/vec2.hpp>
+
+glm::ivec2 g_windowSize(640, 480);
+
 
 GLfloat point[] = {
     0.0f,  0.5f,  0.0f,
@@ -27,9 +29,9 @@ GLfloat textCoord[] = {
 
 void glfwWindowSizeCallback(GLFWwindow* pWindow, int width, int heigth)
 {
-    g_windowSizeX = width;
-    g_windowSizeY = heigth;
-    glViewport(0, 0, g_windowSizeX, g_windowSizeY);
+    g_windowSize.x = width;
+    g_windowSize.y = heigth;
+    glViewport(0, 0, width, heigth);
 }
 
 void glfwKeyCallback(GLFWwindow* pWindow, int key, int scancode, int action, int mode)
@@ -55,7 +57,7 @@ int main(int argc, char** argv)
 
 	GLFWwindow* pWindow;
     /* Create a windowed mode window and its OpenGL context */
-    pWindow = glfwCreateWindow(640, 480, "Battle City", nullptr, nullptr);
+    pWindow = glfwCreateWindow(g_windowSize.x, g_windowSize.y, "Battle City", nullptr, nullptr);
     if (!pWindow)
     {
 		std::cout << "glfwCreateWindow failed" << std::endl;
