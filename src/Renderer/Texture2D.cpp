@@ -12,16 +12,19 @@ namespace Renderer
 	{
 		switch (channels)
 		{
-		case 4:
+		case 4:			
 			m_mode = GL_RGBA;
+			break;
 		case 3:
 			m_mode = GL_RGB;
+			break;
 		default:
 			m_mode = GL_RGB;
 			break;
 		}
 
 		glGenTextures(1, &m_ID);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 		glTexImage2D(GL_TEXTURE_2D, 0, m_mode, m_width, m_heigth, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
@@ -58,7 +61,7 @@ namespace Renderer
 
 	void Texture2D::bind() const
 	{
-
+		glBindTexture(GL_TEXTURE_2D, m_ID);
 	};
 }
 

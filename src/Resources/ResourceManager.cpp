@@ -60,7 +60,7 @@ std::shared_ptr<Renderer::Texture2D> ResourceManager::loadTexture(const std::str
 		std::cerr << "Cant load image: " << texturePath << std::endl;
 		return nullptr;
 	}
-	std::shared_ptr<Renderer::Texture2D> newTexture = m_textures.emplace(textureName, std::make_shared<Renderer::Texture2D>(width, heigth, pixels, channels, GL_NEAREST,GL_CLAMP_TO_EDGE)).first->second;
+	std::shared_ptr<Renderer::Texture2D> newTexture = m_textures.emplace(textureName, std::make_shared<Renderer::Texture2D>(width, heigth, pixels, channels, GL_LINEAR,GL_CLAMP_TO_EDGE)).first->second;
 	return newTexture;
 	stbi_image_free(pixels);
 }
